@@ -7,6 +7,8 @@ This middleware will keep the request stream open indefinitely, pad the initial 
 
 Detailed information on how to setup the browser/client can be found [here][1].
 
+The client can be forced to disconnect by calling res.end().
+
 Installation
 --------
 

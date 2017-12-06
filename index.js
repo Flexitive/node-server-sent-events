@@ -16,6 +16,10 @@ function sse(req, res, next) {
       res.flush();
     }
   };
+  res.sseData = function sseData(data) {
+    res.sse('data: ' + JSON.stringify(data) + '\n\n');
+  this.isReady.reject();
+  };
 
   // write 2kB of padding (for IE) and a reconnection timeout
   // then use res.sse to send to the client
@@ -27,10 +31,12 @@ function sse(req, res, next) {
     res.sse(':keep-alive\n\n');
   }, 20000);
 
-  // cleanup on close
-  res.on('close', function close() {
+  // cleanup on close and finish
+  function cleanup() {
     clearInterval(keepAlive);
-  });
+  }
+  res.on('close', cleanup);
+  res.on('finish', cleanup);
 
   next();
 }
