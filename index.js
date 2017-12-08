@@ -11,8 +11,8 @@ function sse(req, res, next) {
   function send(string) {
     res.write(string);
     // support running within the compression middleware
-    if (res.flush && string.match(/\n\n$/)) {
-      res.flush();
+    if (res.flushHeaders && string.match(/\n\n$/)) {
+      res.flushHeaders();
     }
   }
 
