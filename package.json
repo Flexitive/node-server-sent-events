@@ -11,11 +11,14 @@
     "url": "https://github.com/zacbarton/node-server-sent-events"
   },
   "keywords": [
-  	"express",
-  	"middleware",
-  	"eventsource",
-  	"sse",
-  	"server-sent",
-  	"events"
-  ]
+    "express",
+    "middleware",
+    "eventsource",
+    "sse",
+    "server-sent",
+    "events"
+  ],
+  "devDependencies": {
+    "eventsource": "^1.0.5"
+  }
 }

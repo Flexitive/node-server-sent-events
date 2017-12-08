@@ -16,9 +16,9 @@ function sse(req, res, next) {
       res.flush();
     }
   };
-  res.sseData = function sseData(data) {
+  res.sseEvent = function sseEvent(name, data) {
+    res.sse('event: ' + name + '\n');
     res.sse('data: ' + JSON.stringify(data) + '\n\n');
-  this.isReady.reject();
   };
 
   // write 2kB of padding (for IE) and a reconnection timeout
